@@ -51,11 +51,11 @@ body {
 
 <script>
 
-d3.csv("population.csv", function(err, data) {
+d3.csv("States_Resorted_information_TOTAL.csv", function(err, data) {
 
-  var config = {"color1":"#d3e5ff","color2":"#08306B","stateDataColumn":"state_or_territory","valueDataColumn":"population_estimate_for_july_1_2013_number"}
+  var config = {"color1":"#d3e5ff","color2":"#08306B","stateDataColumn":"STATES","valueDataColumn":"BUDGET(m)"}
   
-  var WIDTH = 800, HEIGHT = 500;
+  var WIDTH = 1600, HEIGHT = 1000;
   
   var COLOR_COUNTS = 9;
   
