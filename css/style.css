@@ -1,15 +1,27 @@
+
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  width: 960px;
-  height: 500px;
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
   position: relative;
+}
+
+nav {
+	display: flex;
+	color: white;
+	background-color: #4B8F97;
+}
+
+h1 {
+	padding: 15px;
 }
 
 /* stylesheet for your custom graph */
 
 .states {
   fill: none;
-  stroke: #fff;
+  stroke: black;
   stroke-linejoin: round;
 }
 

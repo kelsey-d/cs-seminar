@@ -51,9 +51,9 @@ body {
 
 <script>
 
-d3.csv("States_Resorted_information_TOTAL.csv", function(err, data) {
+d3.csv("population.csv", function(err, data) {
 
-  var config = {"color1":"#d3e5ff","color2":"#08306B","stateDataColumn":"STATES","valueDataColumn":"BUDGET"}
+  var config = {"color1":"#d3e5ff","color2":"#08306B","stateDataColumn":"state_or_territory","valueDataColumn":"population_estimate_for_july_1_2013_number"}
   
   var WIDTH = 800, HEIGHT = 500;
   
@@ -143,9 +143,9 @@ d3.csv("States_Resorted_information_TOTAL.csv", function(err, data) {
   
   var path = d3.geo.path();
   
-  var svg = d3.select("#canvas-svg").append("svg")
-      .attr("width", width)
-      .attr("height", height);
+  // var svg = d3.select("#canvas-svg").append("svg")
+  //     .attr("width", width)
+  //     .attr("height", height);
   
   d3.tsv("https://gist.githubusercontent.com/amartone/5e9a82772cf1337d688fe47729e99532/raw/65a04d5b4934beda724630f18c475d350628f64d/us-state-names.tsv", function(error, names) {
   
@@ -171,7 +171,6 @@ d3.csv("States_Resorted_information_TOTAL.csv", function(err, data) {
       .selectAll("path")
         .data(topojson.feature(us, us.objects.states).features)
       .enter().append("path")
-        .attr("transform", "scale(" + SCALE + ")")
         .style("fill", function(d) {
           if (valueById.get(d.id)) {
             var i = quantize(valueById.get(d.id));
@@ -222,9 +221,8 @@ d3.csv("States_Resorted_information_TOTAL.csv", function(err, data) {
   
     svg.append("path")
         .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
-        .attr("class", "states")
-        .attr("transform", "scale(" + SCALE + ")")
-        .attr("d", path);
+        .attr("class", "states");
+        attr("d", path);
   });
   
   });

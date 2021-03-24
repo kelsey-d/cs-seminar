@@ -1,12 +1,12 @@
-  d3.csv("../States_Resorted_information_TOTAL.csv", function(err, data) {
+  d3.csv("../States_Resorted_information.csv", function(err, data) {
 
-    var config = {"color1":"#d3e5ff","color2":"#08306B","stateDataColumn":"STATES","valueDataColumn":"BUDGET"}
+    var config = {"color1":"#d3e5ff","color2":"#08306B","id":"ID","stateDataColumn":"STATES","valueDataColumn":"BUDGET (m)"}
     
     var WIDTH = 1600, HEIGHT = 1000;
     
     var COLOR_COUNTS = 9;
     
-    var SCALE = 1;
+    var SCALE = 1.5;
     
     function Interpolate(start, end, steps, count) {
         var s = start,
@@ -42,18 +42,7 @@
             b: parseInt(result[3], 16)
         } : null;
     }
-    
-    function valueFormat(d) {
-      if (d > 1000000000) {
-        return Math.round(d / 1000000000 * 10) / 10 + "B";
-      } else if (d > 1000000) {
-        return Math.round(d / 1000000 * 10) / 10 + "M";
-      } else if (d > 1000) {
-        return Math.round(d / 1000 * 10) / 10 + "M";
-      } else {
-        return d;
-      }
-    }
+  
     
     var COLOR_FIRST = config.color1, COLOR_LAST = config.color2;
     
@@ -66,7 +55,7 @@
     
     var MAP_STATE = config.stateDataColumn;
     var MAP_VALUE = config.valueDataColumn;
-    
+    var ID = config.id;
     var width = WIDTH;
     var height = HEIGHT;
     
@@ -99,11 +88,16 @@
     name_id_map = {};
     id_name_map = {};
     
-    for (var i = 0; i < names.length; i++) {
-      name_id_map[names[i].name] = names[i].id;
-      id_name_map[names[i].id] = names[i].name;
-    }
-    
+    // for (var i = 0; i < data.length; i++) {
+    //   name_id_map[data[i].STATES] = data[i].ID;
+    //   console.log(data[i].STATES);
+    //   id_name_map[data[i].ID] = data[i].STATES;
+    // }
+   for (var i = 0; i < names.length; i++) {
+   	name_id_map[names[i].name] = names[i].id;
+    	id_name_map[names[i].id] = names[i].name;
+  	}
+  
     data.forEach(function(d) {
       var id = name_id_map[d[MAP_STATE]];
       valueById.set(id, +d[MAP_VALUE]); 
@@ -119,27 +113,19 @@
           .data(topojson.feature(us, us.objects.states).features)
         .enter().append("path")
           .attr("transform", "scale(" + SCALE + ")")
-          .style("fill", function(d) {
-            if (valueById.get(d.id)) {
-              var i = quantize(valueById.get(d.id));
-              var color = colors[i].getColors();
-              return "rgb(" + color.r + "," + color.g +
-                  "," + color.b + ")";
-            } else {
-              return "";
-            }
-          })
+          .style("fill", "white")
+           .style("stroke", "black")         	
           .attr("d", path)
           .on("mousemove", function(d) {
               var html = "";
-    
+    				
               html += "<div class=\"tooltip_kv\">";
               html += "<span class=\"tooltip_key\">";
               html += id_name_map[d.id];
               html += "</span>";
               html += "<span class=\"tooltip_value\">";
-              html += (valueById.get(d.id) ? valueFormat(valueById.get(d.id)) : "");
-              html += "";
+              html += (valueById.get(d.id));
+              html += "M";
               html += "</span>";
               html += "</div>";
               
