@@ -1,4 +1,4 @@
-  d3.csv("../States_Resorted_information.csv", function(err, data) {
+  d3.csv("States_Resorted_information.csv", function(err, data) {
 
     var config = {"color1":"#d3e5ff","color2":"#08306B","id":"ID","stateDataColumn":"STATES","valueDataColumn":"BUDGET (m)"}
     
