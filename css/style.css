@@ -1,153 +1,48 @@
-html{
-    box-sizing: border-box;
-    font-size: 62.5%; /* 1rem = 10px ems vh vw */
-    margin: 0;
-    padding: 0;
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  position: relative;
 }
 
-body{
-    margin: 0;
-    padding: 0;
-    /* background-color: rgb(128, 8, 8); */
+nav {
+	display: flex;
+	color: white;
+	background-color: #4B8F97;
 }
 
-*, *::before, *::after{
-    box-sizing: inherit;
-    margin: 0;
-    padding: 0;
+h1 {
+	padding: 15px;
 }
 
-.blob{
-	position: absolute;
-	padding: 0;
-	/* border: 0.2rem solid black; */
-	height: 15vw;
-	width: 15vw;
-	overflow: hidden;
-  	fill: rgb(150, 50, 150);
+/* stylesheet for your custom graph */
+
+.states {
+  fill: none;
+  stroke: black;
+  stroke-linejoin: round;
 }
 
-.blob svg{
-	position: absolute;
-	top: -12.5%;
-	left: -12.5%;
-	margin: 0;
-	padding: 0;
-	width: 125%;
-	height: 125%;
-	z-index: -1;
-	/* animation: move1 10s ease-in-out infinite; */
-	transition: 2s linear;
-  	transform-origin: 50% 50%;
+.states-choropleth {
+  fill: #ccc;
 }
 
-.name{
-	position: absolute;
-	text-align: center;
-	font-weight: bold;
-	top: 40%;
-	width: 100%;
-	height: 10%;
+#tooltip-container {
+  position: absolute;
+  background-color: #fff;
+  color: #000;
+  padding: 10px;
+  border: 1px solid;
+  display: none;
 }
 
-#state{
-	width: 20vw;
-	height: 20vw;
-	bottom: -5%;
-	left: 40%;
+.tooltip_key {
+  font-weight: bold;
 }
 
-#welfare{
-	left: 2.5%;
-	bottom: 7.5%;
-}
-
-#welfare svg, #defense svg{
-	animation-name: move2;
-}
-
-#education{
-	top: 17.5%;
-	left: 18.67%;
-}
-
-#education svg, #pension svg{
-	animation-name: move3;
-}
-
-#defense{
-	left: 42.5%;
-}
-
-#pension{
-	top: 17.5%;
-	right: 18.67%;
-}
-
-#healthcare{
-	right: 2.5%;
-	bottom: 7.5%;
-}
-
-@keyframes move1 {
-	0% {
-		transform: scale(1);
-	}
-  	38% {
-		transform: scale(1.1) rotate(160deg);
-	}
-  	40% {
-		transform: scale(1.1) rotate(180deg);
-	}
-	78% {
-		transform: scale(0.9) rotate(-40deg);
-	}
-  	80% {
-		transform: scale(0.9) rotate(-20deg);
-	}
-  	100% {
-		transform: scale(1);
-	}
-}
-
-@keyframes move2 {
-	0% {
-		transform: scale(1);
-	}
-  	38% {
-		transform: scale(0.9) rotate(-160deg);
-	}
-  	40% {
-		transform: scale(0.9) rotate(-180deg);
-	}
-	78% {
-		transform: scale(1.1) rotate(40deg);
-	}
-  	80% {
-		transform: scale(1.1) rotate(20deg);
-	}
-  	100% {
-		transform: scale(1);
-	}
-}
-
-@keyframes move3 {
-	0% {
-		transform: scale(1);
-	}
-  	38% {
-		transform: scale(0.9 1) rotate(-100deg);
-	}
-  	40% {
-		transform: scale(0.9 1) rotate(-80deg);
-	}
-	78% {
-		transform: scale(1.1 0.9) rotate(20deg);
-	}
-  	80% {
-		transform: scale(1.1 0.9) rotate(40deg);
-	}
-  	100% {
-		transform: scale(1);
-	}
+.tooltip_value {
+  margin-left: 20px;
+  float: right;
 }
