@@ -1,57 +1,10 @@
-  d3.csv("States_Resorted_information.csv", function(err, data) {
+  d3.csv("../States_Resorted_information.csv", function(err, data) {
 
-    var config = {"color1":"#d3e5ff","color2":"#08306B","id":"ID","stateDataColumn":"STATES","valueDataColumn":"BUDGET (m)"}
+    var config = {"id":"ID","stateDataColumn":"STATES","valueDataColumn":"BUDGET (m)"}
     
     var WIDTH = 1600, HEIGHT = 1000;
     
-    var COLOR_COUNTS = 9;
-    
     var SCALE = 1.5;
-    
-    function Interpolate(start, end, steps, count) {
-        var s = start,
-            e = end,
-            final = s + (((e - s) / steps) * count);
-        return Math.floor(final);
-    }
-    
-    function Color(_r, _g, _b) {
-        var r, g, b;
-        var setColors = function(_r, _g, _b) {
-            r = _r;
-            g = _g;
-            b = _b;
-        };
-    
-        setColors(_r, _g, _b);
-        this.getColors = function() {
-            var colors = {
-                r: r,
-                g: g,
-                b: b
-            };
-            return colors;
-        };
-    }
-    
-    function hexToRgb(hex) {
-        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-        return result ? {
-            r: parseInt(result[1], 16),
-            g: parseInt(result[2], 16),
-            b: parseInt(result[3], 16)
-        } : null;
-    }
-  
-    
-    var COLOR_FIRST = config.color1, COLOR_LAST = config.color2;
-    
-    var rgb = hexToRgb(COLOR_FIRST);
-    
-    var COLOR_START = new Color(rgb.r, rgb.g, rgb.b);
-    
-    rgb = hexToRgb(COLOR_LAST);
-    var COLOR_END = new Color(rgb.r, rgb.g, rgb.b);
     
     var MAP_STATE = config.stateDataColumn;
     var MAP_VALUE = config.valueDataColumn;
@@ -61,71 +14,45 @@
     
     var valueById = d3.map();
     
-    var startColors = COLOR_START.getColors(),
-        endColors = COLOR_END.getColors();
-    
-    var colors = [];
-    
-    for (var i = 0; i < COLOR_COUNTS; i++) {
-      var r = Interpolate(startColors.r, endColors.r, COLOR_COUNTS, i);
-      var g = Interpolate(startColors.g, endColors.g, COLOR_COUNTS, i);
-      var b = Interpolate(startColors.b, endColors.b, COLOR_COUNTS, i);
-      colors.push(new Color(r, g, b));
-    }
-    
-    var quantize = d3.scale.quantize()
-        .domain([0, 1.0])
-        .range(d3.range(COLOR_COUNTS).map(function(i) { return i }));
-    
     var path = d3.geo.path();
     
     var svg = d3.select("#canvas-svg").append("svg")
         .attr("width", width)
         .attr("height", height);
     
-    d3.tsv("https://gist.githubusercontent.com/amartone/5e9a82772cf1337d688fe47729e99532/raw/65a04d5b4934beda724630f18c475d350628f64d/us-state-names.tsv", function(error, names) {
     
     name_id_map = {};
     id_name_map = {};
     
-    // for (var i = 0; i < data.length; i++) {
-    //   name_id_map[data[i].STATES] = data[i].ID;
-    //   console.log(data[i].STATES);
-    //   id_name_map[data[i].ID] = data[i].STATES;
-    // }
-   for (var i = 0; i < names.length; i++) {
-   	name_id_map[names[i].name] = names[i].id;
-    	id_name_map[names[i].id] = names[i].name;
-  	}
-  
+    for (var i = 0; i < data.length; i++) {
+      name_id_map[data[i].STATES] = data[i].ID;
+      id_name_map[data[i].ID] = data[i].STATES;
+    }
     data.forEach(function(d) {
       var id = name_id_map[d[MAP_STATE]];
-      valueById.set(id, +d[MAP_VALUE]); 
+      valueById.set(id, d[MAP_STATE]); 
     });
     
-    quantize.domain([d3.min(data, function(d){ return +d[MAP_VALUE] }),
-      d3.max(data, function(d){ return +d[MAP_VALUE] })]);
-    
-    d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json", function(error, us) {
+    d3.json("js/states-map.json", function(error, us) {
+      
       svg.append("g")
-          .attr("class", "states-choropleth")
-        .selectAll("path")
-          .data(topojson.feature(us, us.objects.states).features)
-        .enter().append("path")
-          .attr("transform", "scale(" + SCALE + ")")
-          .style("fill", "white")
-           .style("stroke", "black")         	
-          .attr("d", path)
+         .attr("class", "states-choropleth")
+        	.selectAll("path")
+         .data(topojson.feature(us, us.objects.states).features)
+        	.enter().append("path")
+         .attr("transform", "scale(" + SCALE + ")")
+         .style("fill", "black")
+         .style("stroke", "white")         	
+         .attr("d", path)
           .on("mousemove", function(d) {
               var html = "";
-    				
+    				  
               html += "<div class=\"tooltip_kv\">";
               html += "<span class=\"tooltip_key\">";
-              html += id_name_map[d.id];
+              html += (valueById.get(d.id));
               html += "</span>";
               html += "<span class=\"tooltip_value\">";
-              html += (valueById.get(d.id));
-              html += "M";
+              // html += (valueById.get(d.id));
               html += "</span>";
               html += "</div>";
               
@@ -147,6 +74,22 @@
                   .style("top", (d3.event.layerY + 15) + "px")
                   .style("left", (d3.event.layerX - tooltip_width - 30) + "px");
               }
+
+              if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+              } else {
+                  // code for IE6, IE5
+                  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+              }
+              xmlhttp.onreadystatechange = function() {
+                  if (this.readyState == 4 && this.status == 200) {
+                      document.getElementsByClassName("tooltip_value")[0].innerHTML = this.responseText +"M";
+                  }
+              };
+              xmlhttp.open("POST","index.php",true);
+              xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              xmlhttp.send("id="+d.id);
           })
           .on("mouseout", function() {
                   $(this).attr("fill-opacity", "1.0");
@@ -161,4 +104,3 @@
     });
     
     });
-  });
