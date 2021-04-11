@@ -6,11 +6,11 @@ if (!$conn) {
    die("Connection failed: " .pg_connect_error());
 }
 
-$result = pg_query($conn, "SELECT budget FROM taxinfo");
+$result = pg_query($conn, "SELECT states,pension,healthcare,defense,education,welfare FROM taxinfo");
 
 
 $row = pg_fetch_array($result, $_POST["id"]-1);
-echo $row["budget"];
+
 
 pg_close($conn);
 
@@ -185,7 +185,7 @@ pg_close($conn);
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
               <path  d="M61.9,0.7C61.9,28.5,31,57,-0.8,57C-32.5,57,-64.9,28.5,-64.9,0.7C-64.9,-27.1,-32.5,-54.3,-0.8,-54.3C31,-54.3,61.9,-27.1,61.9,0.7Z" transform="translate(100 100)" />
             </svg>
-            <div class="name"></div>
+            <div class="name"><?php echo $row["states"]?></div>
             <div class="amount"></div>
         </div>
         <div class="blob" id="welfare">
@@ -193,35 +193,35 @@ pg_close($conn);
               <path  d="M61.9,0.7C61.9,28.5,31,57,-0.8,57C-32.5,57,-64.9,28.5,-64.9,0.7C-64.9,-27.1,-32.5,-54.3,-0.8,-54.3C31,-54.3,61.9,-27.1,61.9,0.7Z" transform="translate(100 100)" />
             </svg>
             <div class="name">WELFARE</div>
-            <div class="amount"></div>
+            <div class="amount"><?php echo $row["welfare"]?></div>
         </div>
         <div class="blob" id="education">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
               <path  d="M61.9,0.7C61.9,28.5,31,57,-0.8,57C-32.5,57,-64.9,28.5,-64.9,0.7C-64.9,-27.1,-32.5,-54.3,-0.8,-54.3C31,-54.3,61.9,-27.1,61.9,0.7Z" transform="translate(100 100)" />
             </svg>
             <div class="name">EDUCATION</div>
-            <div class="amount"></div>
+            <div class="amount"><?php echo $row["education"]?></div>
         </div>
         <div class="blob" id="defense">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
               <path  d="M61.9,0.7C61.9,28.5,31,57,-0.8,57C-32.5,57,-64.9,28.5,-64.9,0.7C-64.9,-27.1,-32.5,-54.3,-0.8,-54.3C31,-54.3,61.9,-27.1,61.9,0.7Z" transform="translate(100 100)" />
             </svg>
             <div class="name">DEFENSE</div>
-            <div class="amount"></div>
+            <div class="amount"><?php echo $row["defense"]?></div>
         </div>
         <div class="blob" id="pension">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
               <path  d="M61.9,0.7C61.9,28.5,31,57,-0.8,57C-32.5,57,-64.9,28.5,-64.9,0.7C-64.9,-27.1,-32.5,-54.3,-0.8,-54.3C31,-54.3,61.9,-27.1,61.9,0.7Z" transform="translate(100 100)" />
             </svg>
             <div class="name">PENSION</div>
-            <div class="amount"></div>
+            <div class="amount"><?php echo $row["pension"]?></div>
         </div>
         <div class="blob" id="healthcare">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
               <path  d="M61.9,0.7C61.9,28.5,31,57,-0.8,57C-32.5,57,-64.9,28.5,-64.9,0.7C-64.9,-27.1,-32.5,-54.3,-0.8,-54.3C31,-54.3,61.9,-27.1,61.9,0.7Z" transform="translate(100 100)" />
             </svg>
             <div class="name">HEALTHCARE</div>
-            <div class="amount"></div>
+            <div class="amount"><?php echo $row["healthcare"]?></div>
         </div>
 
         <!-- <script src="js/script.js" charset="utf-8"></script> -->
