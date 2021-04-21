@@ -180,7 +180,9 @@ pg_close($conn);
 
     </head>
     <body>
-        <h1 class="title">Tax Allocation</h1>
+      <nav>
+        <h1><a href="index.html">Fast Tax Facts</a></h1>
+      </nav>   
         <div class="blob" id="state">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
               <path  d="M61.9,0.7C61.9,28.5,31,57,-0.8,57C-32.5,57,-64.9,28.5,-64.9,0.7C-64.9,-27.1,-32.5,-54.3,-0.8,-54.3C31,-54.3,61.9,-27.1,61.9,0.7Z" transform="translate(100 100)" />
@@ -194,6 +196,7 @@ pg_close($conn);
             </svg>
             <div class="name">WELFARE</div>
             <div class="amount"><?php echo $row["welfare"]?></div>
+            
         </div>
         <div class="blob" id="education">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
