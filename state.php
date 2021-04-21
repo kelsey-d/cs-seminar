@@ -75,6 +75,16 @@ pg_close($conn);
                 height: 10%;
             }
 
+            .amount{
+                position: absolute;
+                text-align: center;
+                font-weight: bold;
+                /* background-color: black; */
+                top: 50%;
+                width: 100%;
+                height: 10%;
+            }
+
             #state{
                 width: 20vw;
                 height: 20vw;
