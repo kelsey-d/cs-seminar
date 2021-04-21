@@ -23,158 +23,179 @@ pg_close($conn);
         <!-- <link rel="stylesheet" href="css/style.css"> -->
 
         <style media="screen">
-        html{
-            box-sizing: border-box;
-            font-size: 62.5%; /* 1rem = 10px ems vh vw */
-            margin: 0;
-            padding: 0;
-        }
+            html{
+                box-sizing: border-box;
+                font-size: 62.5%; /* 1rem = 10px ems vh vw */
+                margin: 0;
+                padding: 0;
+            }
 
-        body{
-            margin: 0;
-            padding: 0;
-            /* background-color: rgb(128, 8, 8); */
-        }
+            body{
+                margin: 0;
+                padding: 0;
+                /* background-color: rgb(128, 8, 8); */
+            }
 
-        *, *::before, *::after{
-            box-sizing: inherit;
-            margin: 0;
-            padding: 0;
-        }
+            *, *::before, *::after{
+                box-sizing: inherit;
+                margin: 0;
+                padding: 0;
+            }
 
-        .blob{
-            position: absolute;
-            padding: 0;
-            /* border: 0.2rem solid black; */
-            height: 15vw;
-            width: 15vw;
-            overflow: hidden;
-            fill: rgb(150, 50, 150);
-        }
+            .blob{
+                position: absolute;
+                padding: 0;
+                /* border: 0.2rem solid black; */
+                height: 15vw;
+                width: 15vw;
+                overflow: hidden;
+                fill: rgb(150, 50, 150);
+            }
 
-        .blob svg{
-            position: absolute;
-            top: -12.5%;
-            left: -12.5%;
-            margin: 0;
-            padding: 0;
-            width: 125%;
-            height: 125%;
-            z-index: -1;
-            /* animation: move1 10s ease-in-out infinite; */
-            transition: 2s linear;
-            transform-origin: 50% 50%;
-        }
+            .blob svg{
+                position: absolute;
+                top: -12.5%;
+                left: -12.5%;
+                margin: 0;
+                padding: 0;
+                width: 125%;
+                height: 125%;
+                z-index: -1;
+                /* animation: move1 10s ease-in-out infinite; */
+                transition: 1.5s linear;
+                transform-origin: 50% 50%;
+            }
 
-        .name{
-            position: absolute;
-            text-align: center;
-            font-weight: bold;
-            top: 40%;
-            width: 100%;
-            height: 10%;
-        }
+            .name{
+                position: absolute;
+                text-align: center;
+                font-weight: bold;
+                top: 40%;
+                width: 100%;
+                height: 10%;
+            }
 
-        #state{
-            width: 20vw;
-            height: 20vw;
-            bottom: -5%;
-            left: 40%;
-        }
+            #state{
+                width: 20vw;
+                height: 20vw;
+                bottom: -5%;
+                left: 40%;
+            }
 
-        #welfare{
-            left: 2.5%;
-            bottom: 7.5%;
-        }
+            #welfare{
+                animation: moveSides1 2s ease-in;
+                left: 2.5%;
+                bottom: 7.5%;
+            }
 
-        #welfare svg, #defense svg{
-            animation-name: move2;
-        }
+            #education{
+                animation: moveDiag1 2s ease-in;
+                top: 17.5%;
+                left: 18.67%;
+            }
 
-        #education{
-            top: 17.5%;
-            left: 18.67%;
-        }
+            #defense{
+                animation: moveTop 2s ease-in;
+                left: 42.5%;
+            }
 
-        #education svg, #pension svg{
-            animation-name: move3;
-        }
+            #pension{
+                animation: moveDiag2 2s ease-in;
+                top: 17.5%;
+                right: 18.67%;
+            }
 
-        #defense{
-            left: 42.5%;
-        }
+            #healthcare{
+                animation: moveSides2 2s ease-in;
+                /* animation-fill-mode: forwards;
+                animation-iteration-count: 1; */
+                right: 2.5%;
+                bottom: 7.5%;
+            }
 
-        #pension{
-            top: 17.5%;
-            right: 18.67%;
-        }
+            #state:hover, #healthcare:hover, #pension:hover, #defense:hover, #education:hover, #welfare:hover{
+                transform: scale(1, .9);
+            }
 
-        #healthcare{
-            right: 2.5%;
-            bottom: 7.5%;
-        }
-        /*
-        @keyframes move1 {
-            0% {
-                transform: scale(1);
+            @keyframes moveSides1 {
+                0% {
+                    transform: scale(0.3) skewX(20deg);
+                    bottom: -5%;
+                    left: 40%;
+                }
+                10%, 20%, 30%, 40%, 50%, 60%, 70%, 80% { transform: scale(1, .9); }
+                15%, 25%, 35%, 45%, 55%, 65%, 75% {transform: scale(.9, 1);}
+                100% {
+                    transform: scale(1) skewX(0deg);
+                    left: 2.5%;
+                    bottom: 7.5%;
+                }
             }
-            38% {
-                transform: scale(1.1) rotate(160deg);
-            }
-            40% {
-                transform: scale(1.1) rotate(180deg);
-            }
-            78% {
-                transform: scale(0.9) rotate(-40deg);
-            }
-            80% {
-                transform: scale(0.9) rotate(-20deg);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
 
-        @keyframes move2 {
-            0% {
-                transform: scale(1);
+            @keyframes moveSides2 {
+                0% {
+                    transform: scale(0.3) skewX(-20deg);
+                    bottom: -5%;
+                    right: 40%;
+                }
+                10%, 20%, 30%, 40%, 50%, 60%, 70%, 80% { transform: scale(1, .9); }
+                15%, 25%, 35%, 45%, 55%, 65%, 75% {transform: scale(.9, 1);}
+                100% {
+                    transform: scale(1) skewX(0deg);
+                    right: 2.5%;
+                    bottom: 7.5%;
+                }
             }
-            38% {
-                transform: scale(0.9) rotate(-160deg);
-            }
-            40% {
-                transform: scale(0.9) rotate(-180deg);
-            }
-            78% {
-                transform: scale(1.1) rotate(40deg);
-            }
-            80% {
-                transform: scale(1.1) rotate(20deg);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
 
-        @keyframes move3 {
-            0% {
-                transform: scale(1);
+            @keyframes moveDiag1 {
+                0% {
+                    transform: scale(0.3) skewX(20deg);
+                    top: 70%;
+                    left: 40%;
+                }
+                10%, 20%, 30%, 40%, 50%, 60%, 70%, 80% { transform: scale(1, .9); }
+                15%, 25%, 35%, 45%, 55%, 65%, 75% {transform: scale(.9, 1);}
+                100% {
+                    transform: scale(1) skewX(0deg);
+                    top: 17.5%;
+                    left: 18.67%;
+                }
             }
-            38% {
-                transform: scale(0.9 1) rotate(-100deg);
+
+            @keyframes moveDiag2 {
+                0% {
+                    transform: scale(0.3) skewX(-20deg);
+                    top: 70%;
+                    right: 40%;
+                }
+                10%, 20%, 30%, 40%, 50%, 60%, 70%, 80% { transform: scale(1, .9); }
+                15%, 25%, 35%, 45%, 55%, 65%, 75% {transform: scale(.9, 1);}
+                100% {
+                    transform: scale(1) skewX(0deg);
+                    top: 17.5%;
+                    right: 18.67%;
+                }
             }
-            40% {
-                transform: scale(0.9 1) rotate(-80deg);
+
+            @keyframes moveTop {
+                0% {
+                    transform: scale(0.3) skewX(20deg);
+                    bottom: -5%;
+                    left: 40%;
+                }
+                10%, 20%, 30%, 40%, 50%, 60%, 70%, 80% { transform: scale(1, .9); }
+                15%, 25%, 35%, 45%, 55%, 65%, 75% {transform: scale(.9, 1);}
+                100% {
+                    transform: scale(1) skewX(0deg);
+                    bottom: 65%;
+                    left: 42.5%;
+                }
             }
-            78% {
-                transform: scale(1.1 0.9) rotate(20deg);
+
+            @keyframes jiggle {
+                10%, 20%, 30%, 40%, 50%, 60%, 70%, 80% { transform: scale(1, .9); }
+                15%, 25%, 35%, 45%, 55%, 65%, 75% {transform: scale(.9, 1);}
             }
-            80% {
-                transform: scale(1.1 0.9) rotate(40deg);
-            }
-            100% {
-                transform: scale(1);
-            } */
 
         </style>
 
@@ -230,13 +251,13 @@ pg_close($conn);
         <!-- <script src="js/script.js" charset="utf-8"></script> -->
         <script type="text/javascript">
             const blobs = document.querySelectorAll(".blob svg");
-            // console.log(blobs);
+            // console.log(blobContainers);
 
             const transformBlob = () => {
                 var s1, s2, rot;
                 s1 = Math.random() * (1.3 - 0.7) + 0.7;
                 s2 = Math.random() * (1.3 - 0.7) + 0.7;
-                rot = Math.floor(Math.random() * 100) - 50;
+                rot = Math.floor(Math.random() * 200) - 100;
 
                 return [s1, s2, rot];
             };
@@ -256,7 +277,7 @@ pg_close($conn);
 
 
 
-            }, 2000);
+            }, 1500);
         </script>
     </body>
 </html>
