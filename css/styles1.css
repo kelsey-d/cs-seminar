@@ -12,7 +12,19 @@ body{
 
 }
 
+select{
+	-webkit-appearance: menulist-button;
+	background-color: transparent;
+	border: none;
+	font-family: inherit;
+	color: grey;
+	height: 100%;
+}
 
+.dropdown-menu {
+	height: 200px;
+	overflow-y: scroll;
+}
 .divider {
 	height: 1px;
 	width: 100%;
