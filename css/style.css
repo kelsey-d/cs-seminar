@@ -7,21 +7,23 @@ body {
   position: relative;
 }
 
-nav {
-	display: flex;
-	color: white;
-	background-color: #4B8F97;
-}
 
-h1 {
-	padding: 15px;
+select{
+  -webkit-appearance: menulist-button;
+  background-color: transparent;
+  border: none;
+  font-family: inherit;
+  color: grey;
+  height: 100%;
 }
 
 /* stylesheet for your custom graph */
-
+#canvas-svg{
+  float: left;
+}
 .states {
   fill: none;
-  stroke: black;
+  stroke: white;
   stroke-linejoin: round;
 }
 

@@ -6,7 +6,7 @@ if (!$conn) {
    die("Connection failed: " .pg_connect_error());
 }
 
-$result = pg_query($conn, "SELECT states,pension,healthcare,defense,education,welfare FROM taxinfo");
+$result = pg_query($conn, "SELECT states,budget,pension,healthcare,defense,education,welfare FROM taxinfo");
 
 
 $row = pg_fetch_array($result, $_POST["id"]-1);
@@ -19,9 +19,12 @@ pg_close($conn);
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width = device-width,initial-scale = 1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Tax Allocation</title>
+        <link rel="stylesheet" type="text/css" href="css/styles1.css">  
         <!-- <link rel="stylesheet" href="css/style.css"> -->
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <style media="screen">
             html{
                 box-sizing: border-box;
@@ -33,7 +36,7 @@ pg_close($conn);
             body{
                 margin: 0;
                 padding: 0;
-                /* background-color: rgb(128, 8, 8); */
+/*                 background-color: rgb(128, 8, 8); */
             }
 
             *, *::before, *::after{
@@ -49,7 +52,7 @@ pg_close($conn);
                 height: 15vw;
                 width: 15vw;
                 overflow: hidden;
-                fill: rgb(150, 50, 150);
+                fill: #6495ED;
             }
 
             .blob svg{
@@ -211,22 +214,52 @@ pg_close($conn);
 
     </head>
     <body>
-      <nav>
-        <h1><a href="index.html">Fast Tax Facts</a></h1>
-      </nav>   
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.html">Fast Tax Facts</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse"  id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+             <select id=year name=year>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019" selected>2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                    <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                    <option value="2013">2013</option>
+                    <option value="2012">2012</option>
+                    <option value="2011">2011</option>  
+                </select>                                                       
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="comparison1.html">Compare</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+
+        </ul>
+      </div>
+    </nav>   
+    <div class="container">
         <div class="blob" id="state">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
               <path  d="M61.9,0.7C61.9,28.5,31,57,-0.8,57C-32.5,57,-64.9,28.5,-64.9,0.7C-64.9,-27.1,-32.5,-54.3,-0.8,-54.3C31,-54.3,61.9,-27.1,61.9,0.7Z" transform="translate(100 100)" />
             </svg>
             <div class="name"><?php echo $row["states"]?></div>
-            <div class="amount"></div>
+            <div class="amount">$<?php echo $row["budget"]?>M</div>
         </div>
         <div class="blob" id="welfare">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
               <path  d="M61.9,0.7C61.9,28.5,31,57,-0.8,57C-32.5,57,-64.9,28.5,-64.9,0.7C-64.9,-27.1,-32.5,-54.3,-0.8,-54.3C31,-54.3,61.9,-27.1,61.9,0.7Z" transform="translate(100 100)" />
             </svg>
             <div class="name">WELFARE</div>
-            <div class="amount"><?php echo $row["welfare"]?></div>
+            <div class="amount">$<?php echo $row["welfare"]?>M</div>
             
         </div>
         <div class="blob" id="education">
@@ -234,30 +267,30 @@ pg_close($conn);
               <path  d="M61.9,0.7C61.9,28.5,31,57,-0.8,57C-32.5,57,-64.9,28.5,-64.9,0.7C-64.9,-27.1,-32.5,-54.3,-0.8,-54.3C31,-54.3,61.9,-27.1,61.9,0.7Z" transform="translate(100 100)" />
             </svg>
             <div class="name">EDUCATION</div>
-            <div class="amount"><?php echo $row["education"]?></div>
+            <div class="amount">$<?php echo $row["education"]?>M</div>
         </div>
         <div class="blob" id="defense">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
               <path  d="M61.9,0.7C61.9,28.5,31,57,-0.8,57C-32.5,57,-64.9,28.5,-64.9,0.7C-64.9,-27.1,-32.5,-54.3,-0.8,-54.3C31,-54.3,61.9,-27.1,61.9,0.7Z" transform="translate(100 100)" />
             </svg>
             <div class="name">DEFENSE</div>
-            <div class="amount"><?php echo $row["defense"]?></div>
+            <div class="amount">$<?php echo $row["defense"]?>M</div>
         </div>
         <div class="blob" id="pension">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
               <path  d="M61.9,0.7C61.9,28.5,31,57,-0.8,57C-32.5,57,-64.9,28.5,-64.9,0.7C-64.9,-27.1,-32.5,-54.3,-0.8,-54.3C31,-54.3,61.9,-27.1,61.9,0.7Z" transform="translate(100 100)" />
             </svg>
             <div class="name">PENSION</div>
-            <div class="amount"><?php echo $row["pension"]?></div>
+            <div class="amount">$<?php echo $row["pension"]?>M</div>
         </div>
         <div class="blob" id="healthcare">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
               <path  d="M61.9,0.7C61.9,28.5,31,57,-0.8,57C-32.5,57,-64.9,28.5,-64.9,0.7C-64.9,-27.1,-32.5,-54.3,-0.8,-54.3C31,-54.3,61.9,-27.1,61.9,0.7Z" transform="translate(100 100)" />
             </svg>
             <div class="name">HEALTHCARE</div>
-            <div class="amount"><?php echo $row["healthcare"]?></div>
+            <div class="amount">$<?php echo $row["healthcare"]?>M</div>
         </div>
-
+        </div>
         <!-- <script src="js/script.js" charset="utf-8"></script> -->
         <script type="text/javascript">
             const blobs = document.querySelectorAll(".blob svg");
@@ -289,5 +322,9 @@ pg_close($conn);
 
             }, 1500);
         </script>
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
     </body>
 </html>

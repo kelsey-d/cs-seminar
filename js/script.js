@@ -57,7 +57,7 @@
               html += "</div>";
               
               $("#tooltip-container").html(html);
-              $(this).attr("fill-opacity", "0.8");
+              $(this).css("fill", "#E6E6FA");
               $("#tooltip-container").show();
               
               var coordinates = d3.mouse(this);
@@ -84,7 +84,7 @@
               }
               xmlhttp.onreadystatechange = function() {
                   if (this.readyState == 4 && this.status == 200) {
-                      document.getElementsByClassName("tooltip_value")[0].innerHTML = this.responseText +"M";
+                      document.getElementsByClassName("tooltip_value")[0].innerHTML = "$"+this.responseText +"M";
                   }
               };
               xmlhttp.open("POST","index.php",true);
@@ -92,7 +92,7 @@
               xmlhttp.send("id="+d.id);
           })
           .on("mouseout", function() {
-                  $(this).attr("fill-opacity", "1.0");
+                  $(this).css("fill", "black");
                   $("#tooltip-container").hide();
               })
           .on("click", function(d) {

@@ -1,0 +1,30 @@
+select{
+  -webkit-appearance: menulist-button;
+  background-color: transparent;
+  border: none;
+  font-family: inherit;
+  color: grey;
+  height: 100%;
+}
+.container-fluid {
+	text-align: center;
+}
+.pension {
+	background-color: #F0F8FF;
+}
+
+.welfare {
+	background-color: #6495ED;
+}
+
+.healthcare {
+	background-color: #E6E6FA;
+}
+
+.defense {
+	background-color: #FAF2CD;
+}
+
+.education {
+	background-color: #ED7BB4;
+}
