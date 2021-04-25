@@ -1,3 +1,10 @@
+body{
+  font-family: "Merriweather Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  position: relative;
+}
 select{
   -webkit-appearance: menulist-button;
   background-color: transparent;
