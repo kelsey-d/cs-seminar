@@ -8,7 +8,7 @@ nav{
 }
 
 body{
-	font-family:"Trochut", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family:"Merriweather Sans" !important;
 
 }
 
@@ -19,6 +19,10 @@ select{
 	font-family: inherit;
 	color: grey;
 	height: 100%;
+}
+
+p {
+	font-size: 150%;
 }
 
 .dropdown-menu {
