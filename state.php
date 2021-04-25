@@ -22,13 +22,16 @@ pg_close($conn);
         <meta name="viewport" content="width = device-width,initial-scale = 1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Tax Allocation</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400&family=Trochut&display=swap" rel="stylesheet">
+
         <link rel="stylesheet" type="text/css" href="css/styles1.css">  
         <!-- <link rel="stylesheet" href="css/style.css"> -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <style media="screen">
             html{
                 box-sizing: border-box;
-                font-size: 62.5%; /* 1rem = 10px ems vh vw */
+                /*font-size: 62.5%; *//* 1rem = 10px ems vh vw */
                 margin: 0;
                 padding: 0;
             }
@@ -72,6 +75,7 @@ pg_close($conn);
             .name{
                 position: absolute;
                 text-align: center;
+                text-transform: uppercase;
                 font-weight: bold;
                 top: 40%;
                 width: 100%;
@@ -81,7 +85,6 @@ pg_close($conn);
             .amount{
                 position: absolute;
                 text-align: center;
-                font-weight: bold;
                 /* background-color: black; */
                 top: 50%;
                 width: 100%;
@@ -213,39 +216,39 @@ pg_close($conn);
         </style>
 
     </head>
-    <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="index.html">Fast Tax Facts</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse"  id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-             <select id=year name=year>
-                    <option value="2021">2021</option>
-                    <option value="2020">2020</option>
-                    <option value="2019" selected>2019</option>
-                    <option value="2018">2018</option>
-                    <option value="2017">2017</option>
-                    <option value="2016">2016</option>
-                    <option value="2015">2015</option>
-                    <option value="2014">2014</option>
-                    <option value="2013">2013</option>
-                    <option value="2012">2012</option>
-                    <option value="2011">2011</option>  
-                </select>                                                       
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="comparison1.html">Compare</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
-          </li>
+<body>
+   <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+    <a class="navbar-brand ml-2" href="index.html"><b>FAST TAX FACTS</b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse"  id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item mx-2">
+           <select id=year name=year>
+              <option value="2021">2021</option>
+              <option value="2020">2020</option>
+              <option value="2019" selected>2019</option>
+              <option value="2018">2018</option>
+              <option value="2017">2017</option>
+              <option value="2016">2016</option>
+              <option value="2015">2015</option>
+              <option value="2014">2014</option>
+              <option value="2013">2013</option>
+              <option value="2012">2012</option>
+              <option value="2011">2011</option>  
+            </select>                                       
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link" href="comparison1.html">COMPARE</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link" href="about.html">ABOUT</a>
+        </li>
 
-        </ul>
-      </div>
-    </nav>   
+      </ul>
+    </div>
+  </nav>
     <div class="container">
         <div class="blob" id="state">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">

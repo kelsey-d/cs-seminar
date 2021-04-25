@@ -42,7 +42,7 @@
         	.enter().append("path")
          .attr("transform", "scale(" + SCALE + ")")
          .style("fill", "black")
-         .style("stroke", "white")         	
+         .style("stroke", "black")         	
          .attr("d", path)
           .on("mousemove", function(d) {
               var html = "";
