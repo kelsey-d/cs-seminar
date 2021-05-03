@@ -25,7 +25,7 @@ pg_close($conn);
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400&family=Trochut&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="css/styles1.css">  
+        <link rel="stylesheet" type="text/css" href="css/styles1.css">
         <!-- <link rel="stylesheet" href="css/style.css"> -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <style media="screen">
@@ -52,8 +52,8 @@ pg_close($conn);
                 position: absolute;
                 padding: 0;
                 /* border: 0.2rem solid black; */
-                height: 15vw;
-                width: 15vw;
+                height: 12.5vw;
+                width: 12.5vw;
                 overflow: hidden;
                 fill: #6495ED;
             }
@@ -106,19 +106,24 @@ pg_close($conn);
 
             #education{
                 animation: moveDiag1 2s ease-in;
-                top: 17.5%;
-                left: 18.67%;
+                top: 25.5%;
+                left: 12.67%;
             }
 
             #defense{
                 animation: moveTop 2s ease-in;
-                left: 42.5%;
+                left: 32.5%;
+            }
+
+            #transportation{
+                animation: moveTop2 2s ease-in;
+                left: 52.5%;
             }
 
             #pension{
                 animation: moveDiag2 2s ease-in;
-                top: 17.5%;
-                right: 18.67%;
+                top: 25.5%;
+                right: 12.67%;
             }
 
             #healthcare{
@@ -129,7 +134,7 @@ pg_close($conn);
                 bottom: 7.5%;
             }
 
-            #state:hover, #healthcare:hover, #pension:hover, #defense:hover, #education:hover, #welfare:hover{
+            #state:hover, #healthcare:hover, #pension:hover, #defense:hover, #education:hover, #welfare:hover, #transportation:hover{
                 transform: scale(1, .9);
             }
 
@@ -173,8 +178,8 @@ pg_close($conn);
                 15%, 25%, 35%, 45%, 55%, 65%, 75% {transform: scale(.9, 1);}
                 100% {
                     transform: scale(1) skewX(0deg);
-                    top: 17.5%;
-                    left: 18.67%;
+                    top: 25.5%;
+                    left: 12.67%;
                 }
             }
 
@@ -188,12 +193,12 @@ pg_close($conn);
                 15%, 25%, 35%, 45%, 55%, 65%, 75% {transform: scale(.9, 1);}
                 100% {
                     transform: scale(1) skewX(0deg);
-                    top: 17.5%;
-                    right: 18.67%;
+                    top: 25.5%;
+                    right: 12.67%;
                 }
             }
 
-            @keyframes moveTop {
+            @keyframes moveTop1 {
                 0% {
                     transform: scale(0.3) skewX(20deg);
                     bottom: -5%;
@@ -204,7 +209,22 @@ pg_close($conn);
                 100% {
                     transform: scale(1) skewX(0deg);
                     bottom: 65%;
-                    left: 42.5%;
+                    left: 32.5%;
+                }
+            }
+
+            @keyframes moveTop2 {
+                0% {
+                    transform: scale(0.3) skewX(20deg);
+                    bottom: -5%;
+                    left: 40%;
+                }
+                10%, 20%, 30%, 40%, 50%, 60%, 70%, 80% { transform: scale(1, .9); }
+                15%, 25%, 35%, 45%, 55%, 65%, 75% {transform: scale(.9, 1);}
+                100% {
+                    transform: scale(1) skewX(0deg);
+                    bottom: 65%;
+                    left: 52.5%;
                 }
             }
 
@@ -236,8 +256,8 @@ pg_close($conn);
               <option value="2014">2014</option>
               <option value="2013">2013</option>
               <option value="2012">2012</option>
-              <option value="2011">2011</option>  
-            </select>                                       
+              <option value="2011">2011</option>
+            </select>
         </li>
         <li class="nav-item mx-2">
           <a class="nav-link" href="comparison1.html">COMPARE</a>
@@ -263,7 +283,7 @@ pg_close($conn);
             </svg>
             <div class="name">WELFARE</div>
             <div class="amount">$<?php echo $row["welfare"]?>M</div>
-            
+
         </div>
         <div class="blob" id="education">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -278,6 +298,13 @@ pg_close($conn);
             </svg>
             <div class="name">DEFENSE</div>
             <div class="amount">$<?php echo $row["defense"]?>M</div>
+        </div>
+        <div class="blob" id="transportation">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <path  d="M61.9,0.7C61.9,28.5,31,57,-0.8,57C-32.5,57,-64.9,28.5,-64.9,0.7C-64.9,-27.1,-32.5,-54.3,-0.8,-54.3C31,-54.3,61.9,-27.1,61.9,0.7Z" transform="translate(100 100)" />
+            </svg>
+            <div class="name">TRANSPORTATION</div>
+            <div class="amount">$<?php echo $row["transportation"]?>M</div>
         </div>
         <div class="blob" id="pension">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
