@@ -35,3 +35,31 @@ select{
 .education {
 	background-color: #ED7BB4;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+  border: 5px solid black;
+  padding: 200px 100px;
+}
+
+.text {
+  font-size: 20px;
+}
+
+.content .description { display: none;
+margin-bottom: .5rem;
+font-family: inherit;
+font-weight: 500;
+line-height: 1.2;
+color: inherit; }
+.content:hover .title { display: none;
+margin-bottom: .5rem;
+font-family: inherit;
+font-weight: 500;
+line-height: 1.2;
+color: inherit; }
+.content:hover .description { display: inline; }
+
