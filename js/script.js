@@ -2,7 +2,7 @@
 
     var config = {"id":"ID","stateDataColumn":"STATES","valueDataColumn":"BUDGET (m)"}
     
-    var WIDTH = 1600, HEIGHT = 1000;
+    var WIDTH = 1600, HEIGHT = 900;
     
     var SCALE = 1.5;
     

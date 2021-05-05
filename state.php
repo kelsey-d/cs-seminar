@@ -6,7 +6,7 @@ if (!$conn) {
    die("Connection failed: " .pg_connect_error());
 }
 
-$result = pg_query($conn, "SELECT states,budget,pension,healthcare,defense,education,welfare FROM taxinfo");
+$result = pg_query($conn, "SELECT states,budget,pension,healthcare,defense,education,welfare,transport FROM taxinfo");
 
 
 $row = pg_fetch_array($result, $_POST["id"]-1);
@@ -303,8 +303,8 @@ pg_close($conn);
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
               <path  d="M61.9,0.7C61.9,28.5,31,57,-0.8,57C-32.5,57,-64.9,28.5,-64.9,0.7C-64.9,-27.1,-32.5,-54.3,-0.8,-54.3C31,-54.3,61.9,-27.1,61.9,0.7Z" transform="translate(100 100)" />
             </svg>
-            <div class="name">TRANSPORTATION</div>
-            <div class="amount">$<?php echo $row["transportation"]?>M</div>
+            <div class="name">TRANSPORT</div>
+            <div class="amount">$<?php echo $row["transport"]?>M</div>
         </div>
         <div class="blob" id="pension">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">

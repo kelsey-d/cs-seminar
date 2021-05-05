@@ -16,6 +16,19 @@ select{
 .container-fluid {
 	text-align: center;
 }
+.row, .row-sm{
+  display: flex;
+  align-items: center;
+}
+
+.col-sm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pension, .welfare, .healthcare, .defense, .education, .transport{
+  padding: 25px;
+}
 .pension {
 	background-color: #F0F8FF;
 }
@@ -36,6 +49,10 @@ select{
 	background-color: #ED7BB4;
 }
 
+.transport {
+  background-color: #D9FAE6;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -49,6 +66,11 @@ select{
   font-size: 20px;
 }
 
+p{
+  font-size: 25px;
+  padding-left: 20px;
+  text-align: left;
+}
 .content .description { display: none;
 margin-bottom: .5rem;
 font-family: inherit;

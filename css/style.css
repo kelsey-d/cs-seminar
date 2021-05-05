@@ -19,9 +19,10 @@ select{
 }
 
 /* stylesheet for your custom graph */
-#canvas-svg{
-  float: left;
-}
+/*#canvas-svg{
+  display: flex;
+  justify-content: center;
+}*/
 .states {
   fill: none;
   stroke: white;
