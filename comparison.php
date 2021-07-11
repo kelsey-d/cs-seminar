@@ -1,6 +1,6 @@
 <?php
 // Create connection
-$conn =pg_connect("host=localhost dbname=tax user=postgres password=NeptunesBoyos");
+$conn =pg_connect("host=localhost dbname=tax user=postgres password=");
 // Check connection
 if (!$conn) {
    die("Connection failed: " .pg_connect_error());
